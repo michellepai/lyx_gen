@@ -1,0 +1,31 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <title>RTF Document Generator UI</title>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+        <link rel="stylesheet" href="style.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script>
+            $(document).bind("mobileinit", function() {
+                $.mobile.ajaxEnabled = false;
+            });
+        </script>
+        <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+        <script src="http://malsup.github.com/jquery.form.js"></script>
+        <script src="js/js.js"></script>
+        <script src="js/sisyphus.min.js"></script>
+    </head>
+
+    <body>
+
+        <h2>Demo</h2>
+        <form method="post" action="demo_merge.php">
+            Enter a name:
+            <input name="yourname" type="text" size="10" />
+            <input type="hidden" name="tpl" value="demo_ms_word.docx" />
+            <input type="submit" name="btn_go" value="and go" />
+        </form>
+    </body>
+</html>

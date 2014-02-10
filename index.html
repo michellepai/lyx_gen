@@ -1,0 +1,343 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <title>LyX Document Generator</title>
+        <!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />-->
+        <link rel="stylesheet" href="style.css" />
+        <!--<script src=js/zepto.min.js></script>-->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <!--<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>-->
+        <script>
+            $(document).bind("mobileinit", function() {
+                $.mobile.ajaxEnabled = false;
+            });
+        </script>
+        <!--        <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> -->
+        <script src="js/js.js"></script>
+        <script src="js/sisyphus.min.js"></script>
+        <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+
+    </head>
+    <body>
+        <div id="pageContainer" class="pageContainer">
+            <div id="toTop" class='float'>^ Back to Top</div>
+            <div id="add_operation" class='float'>+ Add Operation</div>
+            <div class="content">
+                <div class="contentHeading">
+                    <h1>Lyx Source Generator</h1>  
+                </div><!-- end of contentHeading -->
+                <input type="button" value="Export data" id="export" />
+                <input type="button" value="Import data" id="import" />
+                <form id="main" name="/main/" action="lyx/download.php" method="post">
+                    <div id="input_form">
+                        <h3>
+                            API Version Status
+                        </h3>
+
+                        <table id="version">
+                            <thead>
+                                <tr>
+                                    <th>API Name</th>
+                                    <th>Version</th>
+                                    <th>Base URL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th><input type="text" name="ops1_api_name" placeholder="e.g. Privacy Record Management" /></th>
+                                    <td><input type="text" name="ops1_version" placeholder="e.g. 1.3 " /></td>
+                                    <td><input type="text" name="ops1status" placeholder="e.g. Initial" /></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                        <div id='detail_1'>
+                            <fieldset>
+                                <legend><span class="op_title">Operation: 1 </span><input type="text" name="ops1_name" /></legend>
+                                <!--<input type="button" id="rm_op" value="+ Remove Operation" data-inline="true" />-->
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Path</th>
+                                            <th>HTTP Verb</th>
+                                            <th>Operation Type</th>
+                                            <th>Authorization</th>
+                                            <th>OAuth Scope</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" name="ops1_base_url" placeholder="e.g. /subscriber/consent" /></td>
+                                            <td>
+                                                <select name="ops1_verb">
+                                                    <option value="GET" >GET</option>
+                                                    <option value="HEAD" >HEAD</option>
+                                                    <option value="POST" >POST</option>
+                                                    <option value="PUT" >PUT</option>
+                                                    <option value="DELETE" >DELETE</option>
+                                                </select>
+
+                                            </td>
+
+                                            <td>
+                                                <select name="ops1_type_desc">
+                                                    <option value="method" >Method</option>
+                                                    <option value="call_back" >Call Back</option>
+                                                </select>
+
+                                            </td>
+                                            <td>
+                                                <select name="ops1_auth">
+                                                    <option value="auth_code" >Authorization Code</option>
+                                                    <option value="client_cre" >Client Credential</option>
+                                                </select>
+
+                                            </td>
+                                            <td><input type="text" name="ops1_oauth_scope" /></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h3>
+                                    Input Parameters
+                                </h3>
+
+                                <table id="t_ops1_6_1" class='tbl_clone'>
+                                    <thead>
+                                        <tr>
+                                            <th>Parameter</th>
+                                            <th>Data Type</th>
+                                            <th>Required</th>
+                                            <th>Description</th>
+                                            <th>Location</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" name="ops1/6/1/1_param" /></td>
+                                            <td><input type="text" name="ops1/6/1/1_type" /></td>
+                                            <td>
+                                                <select id="required" name="ops1/6/1/1_required">
+                                                    <option value="Mandatory" >Mandatory</option>
+                                                    <option value="Optional" >Optional</option>
+                                                    <option value="Conditional" >Conditional</option>
+                                                </select>
+                                            </td>
+                                            <td><textarea class="desc"  name="ops1/6/1/1_desc"></textarea></td>
+                                            <td>
+                                                <select name="ops1/6/1/1_location">
+                                                    <option value="Header" >Header</option>
+                                                    <option value="Body" >Body</option>
+                                                    <option value="Query_param" >Query Parameter</option>
+                                                    <option value="Resource_uri" >Resource URI</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>   
+                                <input type="button" id="b_ops1_6_1" class='btn_clone' value="+ Add Input Parameter" data-inline="true" />
+                                <h3>
+                                    Input Structure of Private Request Object
+                                </h3>                            
+                                <div id="ops1_ipObj" class="obj_tbl">
+                                    <div id="ops1_ipObj_1">
+                                        <fieldset>
+                                            <legend>Object name:</legend>
+                                            <input type="text" name="ops1/6/2/1_name" />
+
+                                            <table id="t_ops1_6_2" class="tbl_clone">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Parameter</th>
+                                                        <th>Data Type</th>
+                                                        <th>Required</th>
+                                                        <th>Description</th>
+                                                        <th>Location</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><input type="text" name="ops1/6/2/1_param" /></td>
+                                                        <td><input type="text" name="ops1/6/2/1_type" /></td>
+                                                        <td>
+                                                            <select name="ops1/6/2/1_required">
+                                                                <option value="Mandatory" >Mandatory</option>
+                                                                <option value="Optional" >Optional</option>
+                                                                <option value="Conditional" >Conditional</option>
+                                                            </select>
+                                                        </td>
+                                                        <td><textarea class="desc"  name="ops1/6/2/1_desc"></textarea></td>
+                                                        <td>
+                                                            <select name="ops1/6/2/1_location">
+                                                                <option value="Header" >Header</option>
+                                                                <option value="Body" >Body</option>
+                                                                <option value="Query_param" >Query Parameter</option>
+                                                                <option value="Resource_uri" >Resource URI</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div align="right"><input type="button" id="b_ops1_6_2" class='btn_clone' value="+ Add Object Parameter" data-inline="true"  /></div>
+                                        </fieldset>
+
+                                    </div><!--end off ipObj_1-->
+
+                                </div><!--end off ipObj-->
+                                <input type="button" id="b_ops1_ip_obj" class="obj_btn" value="+ Add Object" />
+
+
+
+
+                                <div id="example_req">
+                                    <h3>
+                                        Input Request Example
+                                    </h3>
+                                    <table id="t_ops1_6_e" class='tbl_clone'>
+                                        <thead>
+                                            <tr>
+                                                <th>Type:</th>
+                                                <th>Example:</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><input type="text" name="ops1/6/e/1_type" placeholder="Example Type e.g. JSON"/></td>
+                                                <td ><textarea class="ex"  name="ops1/6/e/1_example" placeholder="e.g. PUT /v1/subscribers/privacy HTTP/1.1"></textarea></td>
+                                        </tbody>
+                                    </table>
+                                    <input type="button" id="b_ops1_6_e" value="+ Add Example" class='btn_clone' data-inline="true" />
+                                </div>
+                                <h3>
+                                    Output Parameters: 
+                                </h3>
+                                <table id="t_ops1_7_1" class='tbl_clone'>
+                                    <thead>
+                                        <tr>
+                                            <th>Parameter</th>
+                                            <th>Data Type</th>
+                                            <th>Required</th>
+                                            <th>Description</th>
+                                            <th>Location</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" name="ops1/7/1/1_param" /></td>
+                                            <td><input type="text" name="ops1/7/1/1_type" /></td>
+                                            <td>
+                                                <select name="ops1/7/1/1_required">
+                                                    <option value="Mandatory" >Mandatory</option>
+                                                    <option value="Optional" >Optional</option>
+                                                    <option value="Conditional" >Conditional</option>
+                                                </select>
+                                            </td>
+                                            <td><textarea class="desc"  name="ops1/7/1/1_desc"></textarea></td>
+                                            <td>
+                                                <select name="ops1/7/1/1_location">
+                                                    <option value="Header" >Header</option>
+                                                    <option value="Body" >Body</option>
+                                                    <option value="Query_param" >Query Parameter</option>
+                                                    <option value="Resource_uri" >Resource URI</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="button" id="b_ops1_7_1" class='btn_clone' value="+ Add Output Parameter" data-inline="true" /><br />
+
+                                <h3>
+                                    Output Structure of Private Request Object
+                                </h3>
+                                <div id="ops1_opObj" class="obj_tbl">
+                                    <div id="ops1_opObj_1">
+                                        <fieldset>
+                                            <legend>Object name:</legend>
+                                            <input type="text" name="ops1/7/2/1_name" />
+
+                                            <table id="t_ops1_7_2" class="tbl_clone">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Parameter</th>
+                                                        <th>Data Type</th>
+                                                        <th>Required</th>
+                                                        <th>Description</th>
+                                                        <th>Location</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><input type="text" name="ops1/7/2/1_param" /></td>
+                                                        <td><input type="text" name="ops1/7/2/1_type" /></td>
+                                                        <td>
+                                                            <select name="ops1/7/2/1_required">
+                                                                <option value="Mandatory" >Mandatory</option>
+                                                                <option value="Optional" >Optional</option>
+                                                                <option value="Conditional" >Conditional</option>
+                                                            </select>
+                                                        </td>
+                                                        <td><textarea class="desc"  name="ops1/7/2/1_desc"></textarea></td>
+                                                        <td>
+                                                            <select name="ops1/7/2/1_location">
+                                                                <option value="Header" >Header</option>
+                                                                <option value="Body" >Body</option>
+                                                                <option value="Query_param" >Query Parameter</option>
+                                                                <option value="Resource_uri" >Resource URI</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div align="right"><input type="button" id="b_ops1_7_2" class='btn_clone' value="+ Add Object Parameter" /></div>
+                                        </fieldset>
+
+                                    </div><!--end off ipObj_1-->
+
+                                </div><!--end off ipObj-->
+                                <input type="button" id="b_ops1_op_obj" class="obj_btn" value="+ Add Object" />
+
+                                <h4>
+                                    Input Request Example
+                                </h4>
+                                <table id="t_ops1_7_e" class='tbl_clone'>
+                                    <thead>
+                                        <tr>
+                                            <th>Type:</th>
+                                            <th>Example:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" name="ops1/7/e/1_type" placeholder="Example Type e.g. JSON"/></td>
+                                            <td ><textarea class="ex"  name="ops1/7/e/1_example" placeholder="e.g. PUT /v1/subscribers/privacy HTTP/1.1"></textarea></td>
+                                    </tbody>
+                                </table>
+                                <input type="button" id="b_ops1_7_e" value="+ Add Example" class='btn_clone' data-inline="true" />
+                            </fieldset>
+                        </div><!-- end of detail1-->
+                    </div><!-- end of input_form -->
+                    <select name="section" id="section">
+                        <option value="op_sum">Operation Summary</option>
+                        <option value="input1">Operation1: Input Table</option>
+                        <option value="input1_ex">Operation1: Input Example</option>
+                        <option value="output1">Operation1: Output Table</option>
+                        <option value="output1_ex">Operation1: Output Example</option>
+
+                    </select>
+                    <input type="button" id="clear_all" value="Clear All" />
+                    <input type="submit" name="btn_go" value="Submit Form" />
+                </form>
+                <div id="output"></div>
+            </div> <!-- end of content -->
+            <div id="ft">
+                <div id="powered_by"><p>RTF Generator</p></div>
+            </div> <!-- end of ft -->
+        </div> <!-- end of page_container -->
+    </body>
+</html>

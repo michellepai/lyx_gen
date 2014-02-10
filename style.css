@@ -1,0 +1,68 @@
+/* 
+    Document   : index
+    Created on : Jul 9, 2013, 4:13:40 PM
+    Author     : Michelle
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.pageContainer{
+    width: 90%;
+    margin-left: 5%;
+}
+h1,h2,h3,strong, p{
+    text-align: center;
+}
+#ft{
+    margin-top: 8%;
+    font-size: 13px;
+}
+
+.content{
+    width: 80%;
+    margin-left: 10%;
+}
+
+.indent{
+    width: 90%;
+    margin-left: 10%;
+}
+
+.add_input_obj_param{
+    margin-left: 80%;
+    float: right;
+}
+
+#toTop {
+            bottom:10px; /* together with this to put the div at the bottom*/
+
+	
+}
+
+#add_operation {
+        top:10px; /* together with this to put the div at the bottom*/
+        
+}
+div{
+    padding: 10px
+}
+.float{
+    width:100px;
+        border:1px solid #ccc;
+        background:#f7f7f7;
+        text-align:center;
+        padding:5px;
+        position:fixed; /* this is the magic */
+        right:10px;
+        cursor:pointer;
+        display:none;
+        color:#333;
+        font-family:verdana;
+        font-size:11px; 
+}
+
+#add_input_param{
+    top: 50px;
+}
+
+
